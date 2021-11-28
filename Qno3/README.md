@@ -4,19 +4,19 @@ The Linux Auditing System helps system administrators create an audit trail, a l
 
 Firstly let’s install Aduit using the following command:
 - sudo apt install auditd<br/>
-  ![installing auditd]()
+  ![installing auditd](https://github.com/LF-DevOps-Intern/5_3_logging_reporting-vikram-rikeshkarma/blob/main/Qno3/snapshots/installing%20auditd.png)
 - Now let’s start, enable and check the status of auditd, we just installed using the following commands:
   - `sudo service auditd start`
   - `sudo systemctl enable auditd`
   - `systemctl status auditd`<br/>
-  ![enable auditd]()
+  ![enable auditd](https://github.com/LF-DevOps-Intern/5_3_logging_reporting-vikram-rikeshkarma/blob/main/Qno3/snapshots/enable%20auditd.png)
 Now let’s view the audit rules:
 - We can view the current set of rules using the command
   - `sudo auditctl -l`
   - It will show no rules, as we have not configured anything and its the default.
 - And the current status of the audit system can be viewed using:
   - `sudo auditctl -s`<br/>
-  ![audit rules]()
+  ![audit rules](https://github.com/LF-DevOps-Intern/5_3_logging_reporting-vikram-rikeshkarma/blob/main/Qno3/snapshots/auditd%20rules.png)
 There are 3 kinds of audit rules:
 - Control rules: These rules are used for changing the configuration and settings of the audit system itself.
 - Filesystem rules: These are file or directory watches. Using these rules, we can audit any kind of access to specific files or directories.
@@ -36,13 +36,13 @@ For this task we will be configuring FILE SYSTEM RULES:
     - `sudo auditctl -w /home/gandalf/Desktop/test-file -p rwx -k /home/gandalf/Desktop/logged-events`
   - We can use the following command to view the rules we just added and we can then verify:
     - `sudo auditctl -l`<br/>
-  ![create files, add and view rules]()
+  ![create files, add and view rules](https://github.com/LF-DevOps-Intern/5_3_logging_reporting-vikram-rikeshkarma/blob/main/Qno3/snapshots/create%20files%2C%20add%20and%20view%20rules.png)
     - I have more than one rule set because the others were set when I was practising for this task.
 - Now let’s make some manual changes to the test file so as to check if we have done everything right and everything is up and running.
 - After all this let’s search the audit logs for the events, for this we can use the command ausearch i.e:
   - `sudo ausearch -k <-key-name>`
   - For our case the command will be:
     - `sudo ausearch -k /home/gandalf/Desktop/logged-events`<br/>
-  ![ausearch events logged]()
+  ![ausearch events logged](https://github.com/LF-DevOps-Intern/5_3_logging_reporting-vikram-rikeshkarma/blob/main/Qno3/snapshots/ausearch%20events%20logged.png)
 
 We can observe that the events have been recorded and we have successfully set up a file in our system in which all the events of the action of read, write and execute will be logged.
